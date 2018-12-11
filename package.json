@@ -1,6 +1,6 @@
 {
   "name": "egg-vuecli-webpack-dev-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "eggPlugin": {
@@ -23,8 +23,14 @@
   },
   "author": "gbbacy",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "files": [
+    "app.js",
+    "agent.js",
+    "config",
+    "lib",
+    "app"
+  ],
+  "dependencies": {
     "@koa/cors": "^2.2.2",
     "chalk": "^2.4.1",
     "eslint": "^5.10.0",
