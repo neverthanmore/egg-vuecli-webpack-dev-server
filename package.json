@@ -1,6 +1,6 @@
 {
-  "name": "egg-webpack-vuecli-dev-server",
-  "version": "1.0.0",
+  "name": "egg-vuecli-webpack-dev-server",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "eggPlugin": {
