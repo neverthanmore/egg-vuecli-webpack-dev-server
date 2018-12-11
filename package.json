@@ -33,13 +33,15 @@
   "dependencies": {
     "@koa/cors": "^2.2.2",
     "chalk": "^2.4.1",
-    "eslint": "^5.10.0",
-    "eslint-config-egg": "^7.1.0",
     "koa": "^2.6.2",
     "koa-webpack-dev-middleware": "^2.0.2",
     "koa-webpack-hot-middleware": "^1.0.3",
     "opn": "^5.4.0",
     "webpack": "^4.27.1",
     "webpack-hot-middleware": "^2.24.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-egg": "^7.1.0"
   }
 }
