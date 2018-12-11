@@ -1,7 +1,7 @@
 {
   "name": "egg-vuecli-webpack-dev-server",
   "version": "1.0.3",
-  "description": "",
+  "description": "A vuecli",
   "main": "index.js",
   "eggPlugin": {
     "name": "webpackVueDevServer"
@@ -15,14 +15,21 @@
     "dev-server"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=6.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neverthanmore/egg-vuecli-webpack-dev-server.git"
   },
-  "author": "gbbacy",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neverthanmore/egg-vuecli-webpack-dev-server/issues"
+  },
+  "ci": {
+    "version": "6, 8"
+  },
   "files": [
     "app.js",
     "agent.js",
@@ -43,5 +50,7 @@
   "devDependencies": {
     "eslint": "^5.10.0",
     "eslint-config-egg": "^7.1.0"
-  }
+  },
+  "author": "gbbacy",
+  "license": "MIT"
 }
