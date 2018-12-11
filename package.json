@@ -1,0 +1,39 @@
+{
+  "name": "egg-webpack-vuecli-dev-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "eggPlugin": {
+    "name": "webpackVueDevServer"
+  },
+  "keywords": [
+    "egg",
+    "eggPlugin",
+    "egg-plugin",
+    "egg-webpack",
+    "vue-cli",
+    "dev-server"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neverthanmore/egg-vuecli-webpack-dev-server.git"
+  },
+  "author": "gbbacy",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@koa/cors": "^2.2.2",
+    "chalk": "^2.4.1",
+    "eslint": "^5.10.0",
+    "eslint-config-egg": "^7.1.0",
+    "koa": "^2.6.2",
+    "koa-webpack-dev-middleware": "^2.0.2",
+    "koa-webpack-hot-middleware": "^1.0.3",
+    "opn": "^5.4.0",
+    "webpack": "^4.27.1",
+    "webpack-hot-middleware": "^2.24.3"
+  }
+}
