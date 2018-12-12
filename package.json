@@ -1,7 +1,7 @@
 {
   "name": "egg-vuecli-webpack-dev-server",
-  "version": "1.0.4",
-  "description": "A vuecli",
+  "version": "1.0.5",
+  "description": "A dev server by use vuecli3 and egg",
   "main": "index.js",
   "eggPlugin": {
     "name": "webpackVueDevServer"
