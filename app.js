@@ -9,18 +9,20 @@ const getIp = require('./lib/getIp');
 module.exports = class appServerBoot {
   constructor(app) {
     this.app = app;
+    this.config = app.config.webpackVueDevServer; 
     this.compilerPort = app.config.webpackVueDevServer.compilerPort;
   }
 
   configDidLoad() {
     const { app } = this;
+    const { autoOpn, opnPath } = this.config;
     app.messenger.setMaxListeners(10000);
     app.messenger.on(EVENT_WEBPACK_BUILD_STATE, data => {
       app.webpackBuildSuccess = data.state;
     });
 
     app.messenger.on(EVENT_OPEN_BROWSER, () => {
-      open(`http://${getIp()}:${app.options.port}`);
+      autoOpn && open(`http://${getIp()}:${app.options.port}${opnPath}`);
     });
 
     // add middleware
