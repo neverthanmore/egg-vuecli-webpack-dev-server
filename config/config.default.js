@@ -16,4 +16,5 @@ exports.webpackVueDevServer = {
   debugPort: 5801,
   cliServicePath: '',
   vueCliContext: '',
+  ignorePath: ''
 };

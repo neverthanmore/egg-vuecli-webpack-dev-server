@@ -9,7 +9,8 @@ const getIp = require('./lib/getIp');
 module.exports = class appServerBoot {
   constructor(app) {
     this.app = app;
-    this.config = app.config.webpackVueDevServer; 
+    this.config = app.config.webpackVueDevServer;
+    this.ingorePath = this.config.ignorePath;
     this.compilerPort = app.config.webpackVueDevServer.compilerPort;
   }
 
@@ -44,23 +45,41 @@ module.exports = class appServerBoot {
       const imgRegex = /\.(png|jpe?g|gif|svg)(\?.*)?$/;
       const p = ctx.path;
       const suffix = path.extname(p).toLocaleLowerCase();
+      let isIngore = false;
 
-      if (suffix in PROXY_MAPPING) {
-        ctx.set('Content-Type', PROXY_MAPPING[suffix]);
-        const content = await app.fileSystem.readWebpackMemoryFile(p, suffix, true);
-        if (content) {
-          ctx.body = content;
+      if (typeof this.ingorePath === 'string' && this.ingorePath) {
+        this.ingorePath = [ this.ingorePath ];
+      }
+
+      if (Object.prototype.toString.call(this.ingorePath) === '[object Array]') {
+        isIngore = this.ingorePath.some(p => {
+          if(p instanceof RegExp) {
+            return p.test(ctx.path);
+          }
+          return p === ctx.path;
+        });
+      }
+
+      if (isIngore) {
+        await next()
+      } else {
+        if (suffix in PROXY_MAPPING) {
+          ctx.set('Content-Type', PROXY_MAPPING[suffix]);
+          const content = await app.fileSystem.readWebpackMemoryFile(p, suffix, true);
+          if (content) {
+            ctx.body = content;
+          } else {
+            await next();
+          }
+        } else if (imgRegex.test(suffix)) {
+          const res = await ctx.curl(`http://127.0.0.1:${this.compilerPort}${p}`, {
+            streaming: true,
+          });
+          ctx.type = suffix.slice(1);
+          ctx.body = res.res;
         } else {
           await next();
         }
-      } else if (imgRegex.test(suffix)) {
-        const res = await ctx.curl(`http://127.0.0.1:${this.compilerPort}${p}`, {
-          streaming: true,
-        });
-        ctx.type = suffix.slice(1);
-        ctx.body = res.res;
-      } else {
-        await next();
       }
     });
   }
